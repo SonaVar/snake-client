@@ -18,6 +18,8 @@ const connect = function() {
   });
   conn.on('connect', () => {
     conn.write('Name: SSV');
+    conn.write('Move: up');
+    
   });
   return conn;
 }
