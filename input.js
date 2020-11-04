@@ -1,3 +1,5 @@
+const {IP, PORT, name, mssgs} = require('./constants');
+
 // Stores the active TCP connection object.
 let connection;
 /**
@@ -10,21 +12,13 @@ const handleUserInput = function() {
   stdin.on('data', (key) => {
     if (key === '\u0003') {
       process.exit();
-    } else if (key === 'w') {
-      connection.write('Move: up');
-    } else if (key === 'a') {
-      connection.write('Move: left');
-    } else if (key === 's') {
-      connection.write('Move: down');
-    } else if (key === 'd') {
-      connection.write('Move: right');
-    } else if (key === 'j') {
-      connection.write('Say: Go Get It!');
-    } else if (key === 'k') {
-      connection.write('Say: Its ok');
-    } else if (key === 'l') {
-      connection.write('Say: C\'mon champ');
-    }
+    } else {
+      for (let item in mssgs) {
+        if (key === item) {
+          connection.write(mssgs[key]);
+        }
+      }
+    };
   });
 };
 const setupInput = function(conn) {
